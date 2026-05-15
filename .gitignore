@@ -1,0 +1,16 @@
+# Node
+node_modules/
+
+# TouchDesigner auto-backups and lock files
+Backup/
+*.toe.lock
+*.toe.swp
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Claude Code local settings
+.claude/settings.local.json

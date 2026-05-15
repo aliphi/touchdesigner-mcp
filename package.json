@@ -1,0 +1,41 @@
+{
+  "name": "touchdesigner-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for TouchDesigner — let Claude (and any MCP client) create operators, set parameters, and wire networks inside a running TouchDesigner project via a Web Server DAT.",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "touchdesigner",
+    "derivative",
+    "claude",
+    "claude-code",
+    "anthropic",
+    "creative-coding",
+    "visual-programming",
+    "generative",
+    "ai-tools"
+  ],
+  "author": "aliphi <nu@nullsight.com> (https://github.com/aliphi)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aliphi/nu-nuk-TouchdesignerClaudeMCP.git"
+  },
+  "bugs": {
+    "url": "https://github.com/aliphi/nu-nuk-TouchdesignerClaudeMCP/issues"
+  },
+  "homepage": "https://github.com/aliphi/nu-nuk-TouchdesignerClaudeMCP#readme",
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1",
+    "zod": "^3.24.4"
+  }
+}
