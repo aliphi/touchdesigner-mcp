@@ -1,7 +1,7 @@
-# TouchDesigner MCP Project (nu-nuk-TouchdesignerClaudeMCP)
+# TouchDesigner MCP Project (touchdesigner-mcp)
 
 ## What this is
-Repo / folder name: `nu-nuk-TouchdesignerClaudeMCP`.
+Repo / folder name: `touchdesigner-mcp`.
 An MCP server that connects to TouchDesigner via a Web Server DAT on port 9980.
 You can create, connect, and manipulate TouchDesigner operators through the MCP tools.
 

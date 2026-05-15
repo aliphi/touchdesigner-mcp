@@ -29,14 +29,18 @@ Built for [Claude Code](https://www.anthropic.com/claude-code) but works with an
 ### 1. Get the MCP server running
 
 ```bash
-git clone <this-repo-url> nu-nuk-TouchdesignerClaudeMCP
-cd nu-nuk-TouchdesignerClaudeMCP
+git clone https://github.com/aliphi/touchdesigner-mcp.git
+cd touchdesigner-mcp
 npm install
 ```
 
 That installs the two dependencies (`@modelcontextprotocol/sdk`, `zod`). Don't run `node server.js` yourself — Claude Code will start it for you in step 3.
 
 ### 2. Set up TouchDesigner to listen
+
+**Shortcut:** open [`Touchdesigner/TouchdesignerClaudeMCP.toe`](./Touchdesigner/TouchdesignerClaudeMCP.toe) — it's a ready-to-use TD project with the Web Server DAT already created, configured on port 9980, and wired to the callback below. Open it, make sure the Web Server DAT's **Active** toggle is on, and skip to step 3.
+
+Otherwise, to set it up by hand in your own project:
 
 1. Open TouchDesigner (a fresh project is fine — you'll be inside `/project1`).
 2. Press **Tab** → **DAT** → **Web Server** to drop a Web Server DAT into the network.
@@ -56,7 +60,7 @@ If you don't, the DAT isn't Active or the port isn't 9980. Fix that before conti
 
 ### 3. Register the MCP server with Claude Code
 
-From inside the `nu-nuk-TouchdesignerClaudeMCP` folder, run:
+From inside the `touchdesigner-mcp` folder, run:
 
 ```bash
 claude mcp add touchdesigner -- node "$(pwd)/server.js"
@@ -74,7 +78,7 @@ Edit `~/.claude.json` and add a `touchdesigner` entry under `mcpServers`:
   "mcpServers": {
     "touchdesigner": {
       "command": "node",
-      "args": ["/absolute/path/to/nu-nuk-TouchdesignerClaudeMCP/server.js"]
+      "args": ["/absolute/path/to/touchdesigner-mcp/server.js"]
     }
   }
 }
@@ -125,11 +129,11 @@ Conventions Claude follows (defined in [`CLAUDE.md`](./CLAUDE.md)):
 ## Repo layout
 
 ```
-server.js                    Node MCP server (the thing Claude launches)
-td_webserver_callback.py     Paste this into TD's Web Server DAT
-CLAUDE.md                    Conventions Claude follows when building networks
-package.json                 Node deps
-NewProject.toe               Example TD project (optional — you can use your own)
+server.js                                  Node MCP server (the thing Claude launches)
+td_webserver_callback.py                   Paste this into TD's Web Server DAT
+CLAUDE.md                                  Conventions Claude follows when building networks
+package.json                               Node deps
+Touchdesigner/TouchdesignerClaudeMCP.toe   Ready-to-use TD project with the Web Server DAT pre-wired
 ```
 
 ---
@@ -143,7 +147,7 @@ TD isn't reachable. Check, in order: (a) TD is open, (b) the Web Server DAT exis
 The MCP server isn't registered. Run `claude mcp list` — `touchdesigner` should appear. If it doesn't, redo step 3 with an absolute path. After registering, fully quit and reopen Claude Code.
 
 **"Cannot find module '@modelcontextprotocol/sdk'"**
-You skipped `npm install`. Run it inside the `nu-nuk-TouchdesignerClaudeMCP` folder.
+You skipped `npm install`. Run it inside the `touchdesigner-mcp` folder.
 
 **Operators get created but `td_set_parameter` errors with "no attribute 'par.foo'"**
 That parameter name doesn't exist on that operator type. Ask Claude to use `td_run_python` with `dir(op('/project1/x').par)` to list valid parameters.
